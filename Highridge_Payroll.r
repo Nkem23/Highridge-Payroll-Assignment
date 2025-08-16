@@ -37,5 +37,5 @@ for (worker in payment_slip) {,
         cat("employment_level:", employment_level, "\n")
         cat("\n")
 }
-
 }
+
