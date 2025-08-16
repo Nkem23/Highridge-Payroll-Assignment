@@ -19,13 +19,17 @@ for(i in 1:400) {
 
 # Iterate through the payment_slip list and print each worker's data
 for (worker in payment_slip) {
-    employment_level <- "N/A" # Default value
-
-    if (worker$salary > 10000 && worker$salary < 20000){
-        employment_level <- "A1"
-    } else if (worker$salary > 7500 && worker$salary < 30000 && worker$gender == 'Female'){
-        employment_level <- "A5-F"
-    }
+    employment_level <- tryCatch({
+        if (worker$salary > 10000 && worker$salary < 20000) {
+            "A1"
+        } else if (worker$salary > 7500 && worker$salary < 30000 && worker$gender == "Female") {
+            "A5-F"
+        } else {
+            stop("NA")  # trigger an exception
+        }
+    }, error = function(e) {
+        paste(e$message)
+    })
 
     cat(strrep("=", 40), "\n")
     cat("Highridge Construction Company\n")
