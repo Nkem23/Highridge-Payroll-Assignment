@@ -1,46 +1,41 @@
-[
-        "payment_slip <- list()\n",
-        "\n",
-        "# create the workers data and store it in a list of lists\n",
-        "for(i in 1:400) {\n",
-        "    worker_id <- i\n",
-        "    worker_name <- paste(\"worker_\", worker_id)\n",
-        "    gender <- sample(c(\"Male\", \"Female\"), 1) # Sample one gender\n",
-        "    salary <- runif(1, 5000, 30000) # Sample one salary\n",
-        "\n",
-        "    # create a list containing worker's data\n",
-        "    worker_data <- list(\n",
-        "        \"name\" = worker_name,\n",
-        "        \"gender\" = gender,\n",
-        "        \"salary\" = salary\n",
-        "    )\n",
-        "    # append the worker's data to the payment_slip list\n",
-        "    payment_slip[[i]] <- worker_data\n",
-        "}\n",
-        "\n",
-        "for (worker in payment_slip) {\n",
-        "    employment_level <- tryCatch({\n",
-        "        if (worker$salary > 10000 && worker$salary < 20000) {\n",
-        "            \"A1\"\n",
-        "        } else if (worker$salary > 7500 && worker$salary < 30000 && worker$gender == \"Female\") {\n",
-        "            \"A5-F\"\n",
-        "        } else {\n",
-        "            stop(\"NA\")  # trigger an exception\n",
-        "        }\n",
-        "    }, error = function(e) {\n",
-        "        paste(e$message)\n",
-        "    })\n",
-        "\n",
-        "    cat(strrep(\"=\", 40), \"\\n\")\n",
-        "    cat(\"Highridge Construction Company\\n\")\n",
-        "    cat(strrep(\"-\", 40), \"\\n\")\n",
-        "    cat(\"employee_name:\", worker$name, \"\\n\")\n",
-        "    cat(\"gender:\", worker$gender, \"\\n\")\n",
-        "    cat(\"salary: $\", worker$salary, \"\\n\")\n",
-        "    cat(\"employment_level:\", employment_level, \"\\n\")\n",
-        "    cat(\"\\n\")\n",
-        "}"
-      ]
-    }
-  ]
+payment_slip <- list()\n
+        # create the workers data and store it in a list of lists
+for(i in 1:400){
+        worker_id <- i
+        worker_name <- paste(\"worker_\", worker_id)
+        gender <- sample(c("Male", "Female"), 1) # Sample one gender
+        salary <- runif(1, 5000, 30000) # Sample one salary
+        # create a list containing worker's data\n",
+        worker_data <- list(
+        "name" = worker_name,
+        "gender" = gender,
+        "salary" = salary,
+         )
+        # append the worker's data to the payment_slip list\n",
+        payment_slip[[i]] <- worker_data
+        }
+# conditional statement                             
+for (worker in payment_slip) {,
+        employment_level <- tryCatch({,
+        if (worker$salary > 10000 && worker$salary < 20000) {
+                "A"
+        } else if (worker$salary > 7500 && worker$salary < 30000 && worker$gender == "Female") {
+                "A5-F"
+        } else {
+                stop("NA")  # trigger an exception\n",
+        }
+         }, error = function(e) {
+                paste(e$message)
+            })
+        
+        cat(strrep("=", 40), "\n")
+        cat("Highridge Construction Company\n")
+        cat(strrep("-", 40), "\n")
+        cat("employee_name:", worker$name, "\n")
+        cat("gender:", worker$gender, "\n")
+        cat("salary: $", worker$salary, "\n")
+        cat("employment_level:", employment_level, "\n")
+        cat("\n")
+}
+
 }
